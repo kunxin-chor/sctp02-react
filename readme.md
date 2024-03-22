@@ -12,3 +12,6 @@ npx create-react-app foobar
 ```
 WDS_SOCKET_PORT=0
 ```
+
+# Runnig a React Application
+In the terminal, change into the directory and type `npm run start`
