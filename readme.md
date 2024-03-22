@@ -6,6 +6,9 @@ So for example, to create a new react application in the folder `foobar`
 npx create-react-app foobar
 ```
 
+## If you have forked this repository
+In the project folder (for example `01-basics`), using the terminal, type `npm install react`
+
 # Setting up Hot Reload for Gitpod
 1. Create an `.env` file in the same directory as the `package.json`
 2. In the `.env` file, we put in:
@@ -13,5 +16,5 @@ npx create-react-app foobar
 WDS_SOCKET_PORT=0
 ```
 
-# Runnig a React Application
+# Running a React Application
 In the terminal, change into the directory and type `npm run start`

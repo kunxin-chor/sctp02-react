@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// When importing your own files in the `src` folder
+// Make sure you put `./` in front
+const puppy = import("./puppy.jpg");
+const logo = import('./logo.svg');
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          I love Chicken Rice
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+        <img src={require('./puppy.jpg')}/>
+        <img src={logo}/>
+        <h1>Hello World</h1>
+        <h2>I love Chicken Rice</h2>
+        <ul>
+          <li>Apples</li>
+          <li>Oranges</li>
+          <li>Pineapples</li>
+        </ul>
+    </>
   );
 }
 
