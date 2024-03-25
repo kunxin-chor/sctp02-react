@@ -27,21 +27,59 @@ export default function SurveyForm() {
     }
 
     const handleTopsChange = (event) => {
-        
-        // Straightforward method
-        // 1. clone the array that you want to change
-        //const modified = tops.slice();
 
-        // 2. modify the cloned array
-        //modified.push(event.target.value);
+        // if `event.checked` is true, it means we are
+        // checking a checkbox (if the checkbox goes
+        // unchecked to checked, then event.target.checked will be true)
+        if (event.target.checked) {
+            // Straightforward method
+            // 1. clone the array that you want to change
+            //const modified = tops.slice();
 
-        // 3. replace the original array state variable with the clone
-        //setTops(modified);
+            // 2. modify the cloned array
+            //modified.push(event.target.value);
 
-        // Elegant method
-        // using the Spread operator to create a new array
-        const modified = [...tops, event.target.value];
-        setTops(modified);
+            // 3. replace the original array state variable with the clone
+            //setTops(modified);
+
+            // Elegant method
+            // using the Spread operator to create a new array
+            const modified = [...tops, event.target.value];
+            setTops(modified);
+        } else {
+            // straightforward method to remove an element from an array
+            // that is a state variable
+            // 1. clone the array
+            //const cloned = tops.slice();
+            // 2. modify the cloned array
+            // 2a. find the index of the item that we want to remove
+            //    let indexToRemove = -1;
+            //    for (let i =0; i < tops.length; i++) {
+            //     if (tops[i] === event.target.value) {
+            //         indexToRemove = i;
+            //         break;
+            //     }
+            //    }     
+            // 2b. remove from an array by index
+            //    cloned.splice(indexToRemove, 1);
+
+            // 3. replace the modified array into the state
+            //    setTops(cloned);
+
+            // method 2: elegant method of removing an element from an array
+            // 1. find the index of the elment you want to remove
+            const indexToRemove = tops.findIndex(function(e){
+                return e === event.target.value;
+            })
+            // 2. chop array into a left half and right half
+            // left half - all the elements BEFORE the index to remove
+            // right half - all the elements AFTER the index to remove
+            const left = tops.slice(0, indexToRemove)
+            const right = tops.slice(indexToRemove + 1);
+            const modified= [...left, ...right];
+            setTops(modified);
+        }
+
 
     }
 
@@ -93,27 +131,27 @@ export default function SurveyForm() {
             <label>Some Favorite Tops</label>
             <div>
                 <input type="checkbox"
-                       name="tops"
-                       value="shirts"
-                       checked={tops.includes('shirts')}
-                       className="ms-1 me-1"
-                       onChange={handleTopsChange}
+                    name="tops"
+                    value="shirts"
+                    checked={tops.includes('shirts')}
+                    className="ms-1 me-1"
+                    onChange={handleTopsChange}
                 /><label>Shirts</label>
 
                 <input type="checkbox"
-                        name="tops"
-                        value="t-shirts"
-                        checked={tops.includes('t-shirts')}
-                        className="ms-1 me-1"
-                        onChange={handleTopsChange}
+                    name="tops"
+                    value="t-shirts"
+                    checked={tops.includes('t-shirts')}
+                    className="ms-1 me-1"
+                    onChange={handleTopsChange}
                 /><label>T-Shirts</label>
 
                 <input type="checkbox"
-                       name="tops"
-                       value="jacket"
-                       className="ms-1 me-1"
-                       checked={tops.includes('jacket')}
-                       onChange={handleTopsChange}
+                    name="tops"
+                    value="jacket"
+                    className="ms-1 me-1"
+                    checked={tops.includes('jacket')}
+                    onChange={handleTopsChange}
                 /><label>Jacket</label>
             </div>
         </div>
