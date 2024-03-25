@@ -5,6 +5,11 @@ export default function SurveyForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [color, setColor] = useState("red");
+
+    // use an empty array because checkboxes
+    // are for multiple values
+    const [tops, setTops] = useState([]);
+
     // 2. initialization
 
     // for the onChange event handler, React
@@ -19,6 +24,25 @@ export default function SurveyForm() {
 
     const handleColorChange = (event) => {
         setColor(event.target.value);
+    }
+
+    const handleTopsChange = (event) => {
+        
+        // Straightforward method
+        // 1. clone the array that you want to change
+        //const modified = tops.slice();
+
+        // 2. modify the cloned array
+        //modified.push(event.target.value);
+
+        // 3. replace the original array state variable with the clone
+        //setTops(modified);
+
+        // Elegant method
+        // using the Spread operator to create a new array
+        const modified = [...tops, event.target.value];
+        setTops(modified);
+
     }
 
     // 3. return JSX
@@ -63,6 +87,34 @@ export default function SurveyForm() {
                     checked={color === "green"}
                     onChange={handleColorChange}
                 /><label>Green</label>
+            </div>
+        </div>
+        <div>
+            <label>Some Favorite Tops</label>
+            <div>
+                <input type="checkbox"
+                       name="tops"
+                       value="shirts"
+                       checked={tops.includes('shirts')}
+                       className="ms-1 me-1"
+                       onChange={handleTopsChange}
+                /><label>Shirts</label>
+
+                <input type="checkbox"
+                        name="tops"
+                        value="t-shirts"
+                        checked={tops.includes('t-shirts')}
+                        className="ms-1 me-1"
+                        onChange={handleTopsChange}
+                /><label>T-Shirts</label>
+
+                <input type="checkbox"
+                       name="tops"
+                       value="jacket"
+                       className="ms-1 me-1"
+                       checked={tops.includes('jacket')}
+                       onChange={handleTopsChange}
+                /><label>Jacket</label>
             </div>
         </div>
     </>)
