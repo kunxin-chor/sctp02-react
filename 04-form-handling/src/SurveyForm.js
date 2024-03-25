@@ -5,6 +5,7 @@ export default function SurveyForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [color, setColor] = useState("red");
+    const [country, setCountry] = useState("singapore")
 
     // use an empty array because checkboxes
     // are for multiple values
@@ -78,9 +79,15 @@ export default function SurveyForm() {
             const right = tops.slice(indexToRemove + 1);
             const modified= [...left, ...right];
             setTops(modified);
+
+            // setTops([...tops.slice(0, indexToRemove), ...tops.slice(indexToRemove + 1)])
         }
 
 
+    }
+
+    const handleCountryChange = (event) => {
+        setCountry(event.target.value);
     }
 
     // 3. return JSX
@@ -154,6 +161,17 @@ export default function SurveyForm() {
                     onChange={handleTopsChange}
                 /><label>Jacket</label>
             </div>
+        </div>
+        <div>
+            <label>Country</label>
+            <select className="form-control" 
+                    value={country} 
+                    onChange={handleCountryChange}
+            >
+                <option value="singapore">Singapore</option>
+                <option value="malaysia">Malaysia</option>
+                <option value="indonesia">Indonesia</option>
+            </select>
         </div>
     </>)
 }
